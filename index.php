@@ -73,5 +73,6 @@ if(TYPE_APP == 1){
 //    echo $_SESSION[$i];
 //}
 //echo count($_SESSION['carrito']);
-print_r($_SESSION['carrito']);
+//print_r($_SESSION['carrito']);
+//echo $_SESSION['contador'];
 
