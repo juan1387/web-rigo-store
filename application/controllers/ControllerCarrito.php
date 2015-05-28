@@ -22,102 +22,75 @@ Class ControllerCarrito extends ControllerMain{
             return $vectorFields;
     }
     public function addCarrito($vector){ 
-        //Construyo el producto
-        $arrayProducto = array("id"=>$_SESSION['contador'],
-            "producto"=>$vector['producto'],
-            "talla"=> $vector['talla'],
-            "cantidad"=>$vector['cantidad'],
-            "sexo"=>$vector['sexo'],
-            "color"=> $vector['color']);
-        //El array lo asigno a la variable de session
-        $_SESSION['carrito'][]=$arrayProducto;
-        //Aumento el valor del contador
-        $_SESSION['contador']++;
-        //Devuelvo este valor para llevar el control de la cantidad de productos
-        echo $_SESSION['contador'];
-//        if($this->verificarexistencia($vector['producto'],$vector['talla'],$vector['sexo'],$vector['color'])){
-//            $_SESSION['producto'][$_SESSION['contador']] = $vector['producto'];
-//            $_SESSION['id'][$_SESSION['contador']] = $_SESSION['contador'];
-//            $_SESSION['talla'][$_SESSION['contador']] = $vector['talla'];
-//            $_SESSION['cantidad'][$_SESSION['contador']] = $vector['cantidad'];
-//            $_SESSION['sexo'][$_SESSION['contador']] = $vector['sexo'];
-//            $_SESSION['color'][$_SESSION['contador']] = $vector['color'];
-//            $_SESSION['contador']++;
-//
-//            echo $_SESSION['contador'];
-//        }else{
-//            echo 0; 
-//        }
-        
+        //Valido existencia en el carrito y si no esta agrego 
+        if($this->verificarexistencia($vector['producto'],$vector['talla'],$vector['sexo'],$vector['color'])){
+            //Construyo el producto
+            $arrayProducto = array("id"=>$_SESSION['contador'],
+                "producto"=>$vector['producto'],
+                "talla"=> $vector['talla'],
+                "cantidad"=>$vector['cantidad'],
+                "sexo"=>$vector['sexo'],
+                "color"=> $vector['color']);
+            //El array lo asigno a la variable de session
+            $_SESSION['carrito'][]=$arrayProducto;
+            //Aumento el valor del contador
+            $_SESSION['contador']++;
+            //Devuelvo este valor para llevar el control de la cantidad de productos
+            echo $_SESSION['contador'];
+       }else{
+           echo 0; 
+        }
     }
     public  function vaciarCarrito($vector){
         session_unset($_SESSION['carrito']);
-         session_unset($_SESSION['contador']);
-//        unset($_SESSION['contador']);
-//        unset($_SESSION['producto']);
-//        unset($_SESSION['cantidad']);
-//        unset($_SESSION['talla']);
-//        unset($_SESSION['color']);
-//        unset($_SESSION['sexo']);
-        
+        session_unset($_SESSION['contador']);
     }
     public function verificarexistencia($producto,$talla,$sexo,$color){
         for($i = 0;$i< $_SESSION['contador'];$i++){
-            if($_SESSION['producto'][$i]==$producto){
-                if($_SESSION['talla'][$i]==$talla){
-                    if($_SESSION['sexo'][$i]==$sexo && $_SESSION['sexo'][$i] != 3){
-                        if($_SESSION['color'][$i]==$color){
+            if($_SESSION['carrito'][$i]['producto']==$producto){
+                if($_SESSION['carrito'][$i]['talla']==$talla){
+                    if($_SESSION['carrito'][$i]['sexo']==$sexo && $_SESSION['carrito'][$i]['sexo'] != 3){
+                        if($_SESSION['carrito'][$i]['color']==$color){
                             return false;
                             break;
                         }
                     }
                 }
-                }
+            }
         }
         return true;
     }
     public function mostrarCarrito($lang){
         $objeProducto = ControllerMain::makeObjects("Productos",1);
-       for($i = 0;$i< $_SESSION['contador'];$i++){
-           $campos = $objeProducto->selectProductoSengle($_SESSION['producto'][$i],$lang);
-            $tallacolorsexo =$this->getTallasSexo($_SESSION['sexo'][$i],$_SESSION['talla'][$i],$lang,$_SESSION['color'][$i]);
-            $cantidad = $_SESSION['cantidad'][$i];
-           $producto = $_SESSION['id'][$i];
-           echo "<div class=\"producto-cart-block\">"
-                    . "<div class =\"inline \" ><div class=\"foto-cart\"><img src = 'public".DS."productos".DS."$campos[imguno]' alt='$campos[seo]' /></div></div>"
-                    . "<div class =\"inline info-cart-pro\">"
-                   . "<div><span class =\"rosa-text\">$campos[nombrem]</span> <br /> $campos[nombre]</div>"
-                   . "<div><strong>".$this->translate("Referencia",$lang).": $campos[ref]</div>"
-                   .$tallacolorsexo
-                   . "<div><strong>".$this->translate("Cantidad",$lang).": <input type ='number' value ='$cantidad' name ='txtcantidadcart' id ='txtcantidadcart' /></div>"
-                   . "<a href='' class ='botones-carro eliminar-item' id=' $producto'>Eliminar</a>"
-                   . "</div>"
-                    ."<div class =\"inline\">"
-                   . "<span class =\"rosa-text\"> $ ".  number_format($campos['valoruno']*$_SESSION['cantidad'][$i])." COP </span>"
-                   . "</div>"
+        for($i = 0;$i< $_SESSION['contador'];$i++){
+                $campos = $objeProducto->selectProductoSengle($_SESSION['carrito'][$i]['producto'],$lang);
+            $tallacolorsexo =$this->getTallasSexo($_SESSION['carrito'][$i]['sexo'],$_SESSION['carrito'][$i]['talla'],$lang,$_SESSION['carrito'][$i]['color']);
+            $cantidad = $_SESSION['carrito'][$i]['cantidad'];
+            $producto = $_SESSION['carrito'][$i]['id'];
+            echo "<div class=\"producto-cart-block\">"
+                . "<div class =\"inline \" ><div class=\"foto-cart\"><img src = 'public".DS."productos".DS."$campos[imguno]' alt='$campos[seo]' /></div></div>"
+                . "<div class =\"inline info-cart-pro\">"
+                . "<div><span class =\"rosa-text\">$campos[nombrem]</span> <br /> $campos[nombre]</div>"
+                . "<div><strong>".$this->translate("Referencia",$lang).": $campos[ref]</div>"
+                .$tallacolorsexo
+                . "<div><strong>".$this->translate("Cantidad",$lang).": <input type ='number' value ='$cantidad' name ='txtcantidadcart' id ='txtcantidadcart' /></div>"
+                . "<a href='' class ='botones-carro eliminar-item' id=' $producto'>Eliminar</a>"
+                . "</div>"
+                ."<div class =\"inline\">"
+                . "<span class =\"rosa-text\"> $ ".  number_format($campos['valoruno']*$_SESSION['carrito'][$i]['cantidad'])." COP </span>"
+                . "</div>"
                 . "</div>";
         }
     }
     public function eliminarItem($vector){
-       $i = intval($vector['producto']);
-          print_r($_SESSION);
-             print_r($_SESSION['producto'][$i]);
-                unset($_SESSION['producto'][$i]);
-                unset($_SESSION['talla'][$i]);
-                unset($_SESSION['cantidad'][ $i]);
-                unset($_SESSION['sexo'][$i]);
-                unset($_SESSION['color'][$i]);
-              $_SESSION['producto'] = array_values($_SESSION['producto']);
-               $_SESSION['talla']=   array_values($_SESSION['talla']);
-                $_SESSION['cantidad']=  array_values($_SESSION['cantidad']);
-                $_SESSION['sexo']=  array_values($_SESSION['sexo']);
-                  $_SESSION['color']= array_values($_SESSION['color']);
-                   $_SESSION['contador'] = $_SESSION['contador']-1;
-                print_r($_SESSION);
-                
-               
         
-        
+        $i = intval($vector['producto']);
+        unset($_SESSION['carrito'][$i]);
+        $_SESSION['carrito'] = array_values($_SESSION['carrito']);
+        $_SESSION['contador'] = $_SESSION['contador']-1;
+        if($_SESSION['contador']==0){
+            $this->vaciarCarrito($vector);
+        }
 //        return true;
     }
 
