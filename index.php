@@ -1,7 +1,8 @@
 <?php
 @session_start();
-
-if(!isset($_SESSION['contador'])){$_SESSION['contador'] = 0;}
+if(!isset($_SESSION['contador'])){
+    $_SESSION['contador'] = 0;
+}
 
 //header('Content-Type: text/html; charset=UTF-8'); 
 define('DS', "/");
@@ -67,5 +68,10 @@ if(TYPE_APP == 1){
 }
 //
 //session_destroy();
-//print_r($_SESSION);
+ //session_destroy($_SESSION['carrito']);
+//for($i = 0;$i< count($_SESSION['carrito']);$i++){
+//    echo $_SESSION[$i];
+//}
+//echo count($_SESSION['carrito']);
+print_r($_SESSION['carrito']);
 

@@ -3,7 +3,7 @@
         <h2 class ="titulos-rigo">Rigo<span class="color-rosa"><?php echo $this->translate("Tienda",$lang);?></span></h2>
         
             <?php
-                
+               $_SESSION['contador'] = (isset($_SESSION['contador']))?$_SESSION['contador']:0;
                 if($_SESSION['contador']>0){
                     echo "<div id =\"content-cong-cart\">"
                      . "<a id =\"btn-vaciar\" class =\"botones-carro\" href=\"#\">".$this->translate("Vaciar carrito",$lang)."</a><div style =\"clear: both;\"></div></div>"

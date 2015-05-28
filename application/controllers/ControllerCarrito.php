@@ -5,37 +5,60 @@ Class ControllerCarrito extends ControllerMain{
     private $msg_error;
     private $msg_good;
     public function __construct(){
-            $this->_modelo = new ModelMain();
-            $this->table="producto";
-            $this->msg_error ="Error. Intente nuevamente, si el problema pesiste contáctenos";
-            $this->msg_good ="La Operación se realiazo con exito";
+        $this->_modelo = new ModelMain();
+        $this->table="producto";
+        $this->msg_error ="Error. Intente nuevamente, si el problema pesiste contáctenos";
+        $this->msg_good ="La Operación se realiazo con exito";
     }
 
     public  function getFieldsTable($table){
             $vectorFields = array();
             $request_gross = $this->_modelNoticias->fieldDbase($table);
             if($request_gross){
-                    while ($row = mysqli_fetch_assoc($request_gross)) {
-                            $vectorFields[]= $row['Field'];
-                    }
+                while ($row = mysqli_fetch_assoc($request_gross)) {
+                    $vectorFields[]= $row['Field'];
+                }
             }
             return $vectorFields;
     }
     public function addCarrito($vector){ 
-        if($this->verificarexistencia($vector['producto'],$vector['talla'],$vector['sexo'],$vector['color'])){
-            @session_start();
-            $_SESSION['producto'][$_SESSION['contador']] = $vector['producto'];
-            $_SESSION['id'][$_SESSION['contador']] = $_SESSION['contador'];
-            $_SESSION['talla'][$_SESSION['contador']] = $vector['talla'];
-            $_SESSION['cantidad'][$_SESSION['contador']] = $vector['cantidad'];
-            $_SESSION['sexo'][$_SESSION['contador']] = $vector['sexo'];
-            $_SESSION['color'][$_SESSION['contador']] = $vector['color'];
-            $_SESSION['contador']++;
-
-            echo $_SESSION['contador'];
-        }else{
-            echo 0; 
-        }
+        //Construyo el producto
+        $arrayProducto = array("id"=>$_SESSION['contador'],
+            "producto"=>$vector['producto'],
+            "talla"=> $vector['talla'],
+            "cantidad"=>$vector['cantidad'],
+            "sexo"=>$vector['sexo'],
+            "color"=> $vector['color']);
+        //El array lo asigno a la variable de session
+        $_SESSION['carrito'][]=$arrayProducto;
+        //Aumento el valor del contador
+        $_SESSION['contador']++;
+        //Devuelvo este valor para llevar el control de la cantidad de productos
+        echo $_SESSION['contador'];
+//        if($this->verificarexistencia($vector['producto'],$vector['talla'],$vector['sexo'],$vector['color'])){
+//            $_SESSION['producto'][$_SESSION['contador']] = $vector['producto'];
+//            $_SESSION['id'][$_SESSION['contador']] = $_SESSION['contador'];
+//            $_SESSION['talla'][$_SESSION['contador']] = $vector['talla'];
+//            $_SESSION['cantidad'][$_SESSION['contador']] = $vector['cantidad'];
+//            $_SESSION['sexo'][$_SESSION['contador']] = $vector['sexo'];
+//            $_SESSION['color'][$_SESSION['contador']] = $vector['color'];
+//            $_SESSION['contador']++;
+//
+//            echo $_SESSION['contador'];
+//        }else{
+//            echo 0; 
+//        }
+        
+    }
+    public  function vaciarCarrito($vector){
+        session_unset($_SESSION['carrito']);
+         session_unset($_SESSION['contador']);
+//        unset($_SESSION['contador']);
+//        unset($_SESSION['producto']);
+//        unset($_SESSION['cantidad']);
+//        unset($_SESSION['talla']);
+//        unset($_SESSION['color']);
+//        unset($_SESSION['sexo']);
         
     }
     public function verificarexistencia($producto,$talla,$sexo,$color){
@@ -133,15 +156,7 @@ Class ControllerCarrito extends ControllerMain{
         return "<div class ='info-basica-cart'>$htmlsexo  $htmltallas  $htmlcolor </div>";
     }
 
-    public  function vaciarCarrito($vector){
-        unset($_SESSION['contador']);
-        unset($_SESSION['producto']);
-        unset($_SESSION['cantidad']);
-        unset($_SESSION['talla']);
-        unset($_SESSION['color']);
-        unset($_SESSION['sexo']);
-        
-    }
+
     public  function selectTalla($idtalla,$lang){
         $query ="";
     }

@@ -64,6 +64,7 @@ function agregarCarrito(talla,producto,idioma,color,cantidad,sexo){
 }
 function vaciarCarrito(idioma){
     $.post('accion-vaciarCarrito-Carrito',{idioma:idioma}, function(data){
+        console.log(data);
         location.reload(); 
     });
 }

@@ -45,8 +45,9 @@
                     <div class ="inline cart-tool" ><a href="#" class ="inicio-sesion"><?php echo $this->translate("Iniciar sesión",$lang);?></a> / <a href="#" class ="inicio-sesion"><?php echo $this->translate("Registrarse",$lang);?></a></div>
                     <div class ="inline cart-tool" id="img-cart"><a href="es-cart"><img src="<?php echo RECURSOS;?>img<?php echo DS; ?>cart-buy.png" alt="Cart rigo store" />
                      <span id ='cantidad-cart' >     <?php
+                     $_SESSION['contador'] = (isset($_SESSION['contador']))?$_SESSION['contador']:"";
                             if($_SESSION['contador']>0){
-                                echo "($_SESSION[contador])";
+                                echo "(".$_SESSION['contador'].")";
                             }
                         ?></span></a></div>
                     
