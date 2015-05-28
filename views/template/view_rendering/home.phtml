@@ -1,0 +1,37 @@
+<section id ="slidermain">
+    <?php $this->_objMain->loadSlider('main',$lang);?>
+</section>
+<section class ="center-body">
+    <article>
+        <h2 class ="titulos-rigo">Rigo<span class="color-rosa">News</span><h2>
+                <?php ControllerMain::makeObjects("Noticias",1) ?>
+        <p> Contenido (ademas de imagenes, citas, videos etc.) </p>
+    </article>
+</section>
+<section class ="center-body">
+<section class ="gadget ">
+   <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=1446310765600025";
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+        (document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="fb-page" data-href="https://www.facebook.com/FansRigobertoUran" data-hide-cover="true" data-show-facepile="true" data-show-posts="false">
+        <div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/FansRigobertoUran">
+                <a href="https://www.facebook.com/FansRigobertoUran">Rigoberto Urán</a></blockquote></div>
+    </div>
+</section>
+<section class ="gadget" style="">
+<a class="twitter-timeline" href="https://twitter.com/UranRigoberto" data-widget-id="593502098580480000">Tweets por el @UranRigoberto.</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section class ="gadget" >
+    <h2>Noticias</h2>
+    <article><?php $this->_objMain->cargarPrensa($lang); ?></article>
+</section>
+</section>

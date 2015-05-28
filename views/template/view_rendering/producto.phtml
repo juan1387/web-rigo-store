@@ -1,0 +1,19 @@
+<section class ="center-body">
+    <article id ="idproducto" val ="<?php echo $_GET['idproducto'];?>" lan ="<?php echo $lang;?>">
+        <h2 class ="titulos-rigo">Rigo<span class="color-rosa"><?php echo $this->translate("Tienda",$lang);?></span></h2>
+            <?php 
+                $obje = ControllerMain::makeObjects("Productos",1);
+                $obje->selectProducto($lang,$_GET['idproducto'],2);
+            ?>
+    </article>
+   
+    <div class ="inline" id ="fotos-producto"></div>
+    <div class ="inline" id ="informacion-producto"></div>
+    <div class="descripcion-producto" >
+        
+    </div>
+    <div class="productos-relacionados" >
+         <h2 class ="titulos-rigo"><?php echo $this->translate("Productos",$lang);?><span class="color-rosa"><?php echo $this->translate("Relacionados",$lang);?></span></h2>
+    </div>
+</section>
+

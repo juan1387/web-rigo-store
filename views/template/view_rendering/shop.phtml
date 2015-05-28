@@ -1,0 +1,10 @@
+<section class ="center-body">
+    <article>
+        <h2 class ="titulos-rigo">Rigo<span class="color-rosa"><?php echo $this->translate("Tienda",$lang);?></span></h2>
+            <?php 
+                $obje = ControllerMain::makeObjects("Productos",1);
+                $obje->selectProducto($lang);
+            ?>
+    </article>
+</section>
+

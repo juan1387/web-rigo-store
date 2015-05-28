@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="<?php echo $lang; ?>">
+ 
+<head>
+<title>Titulo de la web</title>
+<meta charset="utf-8" />
+    <?php  echo $this->_objMain->cargarRecursos('main'); ?>
+</head>
+<script>
+    $(document).ready(function(){
+       
+        $("ul#idiomas li a").click(function(event) {
+            var obj = $(this);
+            urlLan(obj,1);
+        });
+        function urlLan(obj,sw){
+            event.preventDefault();
+            var pathname = window.location.pathname;
+            var newurl = pathname.split("/");
+            newurl = newurl[newurl.length-1].split('-');
+            delete newurl[0];
+            newurl.splice(0,1);
+            var url = newurl.join("-");
+            if(sw==1){
+                location.href =obj.prop("href")+"-"+url;
+            }else{
+                location.href =obj.sw+"-"+url;
+            }
+        }
+        })   
+</script>
+<body>
+    <header>
+        <div id ="header-center">
+            <div id="logo" class ="inline ">
+                <img src="<?php echo RECURSOS;?>img<?php echo DS; ?>logo-rigo-uran.jpg" alt="APP_NAME" title ="APP_SLOGAN"/>
+            </div>
+            <div id ="header-rigth" class ="inline">
+                <div id ="header-top">
+                    <div  id ="idiomas-content">
+                        <?php  
+                            $this->_objMain->cargarIdiomas();
+                        ?>
+                    </div>
+                    <div class ="inline cart-tool" ><a href="#" class ="inicio-sesion"><?php echo $this->translate("Iniciar sesión",$lang);?></a> / <a href="#" class ="inicio-sesion"><?php echo $this->translate("Registrarse",$lang);?></a></div>
+                    <div class ="inline cart-tool" id="img-cart"><a href="es-cart"><img src="<?php echo RECURSOS;?>img<?php echo DS; ?>cart-buy.png" alt="Cart rigo store" />
+                     <span id ='cantidad-cart' >     <?php
+                            if($_SESSION['contador']>0){
+                                echo "($_SESSION[contador])";
+                            }
+                        ?></span></a></div>
+                    
+                </div>
+                <div id ="header-bottom">
+                    <div id="main_menu">
+                        <?php  
+                            $this->_objMain->cargarMenu($lang);
+                        ?>
+                    </div>
+                </div>
+            <!-- <div id ="redesHeader">
+                <?php // $this->_objMain->carRedes();?>
+            </div>-->
+            </div>
+        </div>
+    </header>
+    <section>
+   
