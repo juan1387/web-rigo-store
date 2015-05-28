@@ -73,7 +73,7 @@ Class ControllerCarrito extends ControllerMain{
             . "<div><span class =\"rosa-text\">$campos[nombrem]</span> <br /> $campos[nombre]</div>"
             . "<div><strong>".$this->translate("Referencia",$lang).": $campos[ref]</div>"
             .$tallacolorsexo
-            . "<div><strong>".$this->translate("Cantidad",$lang).": <input type ='number' value ='$cantidad' name ='txtcantidadcart' id ='txtcantidadcart' /></div>"
+            . "<div><strong>".$this->translate("Cantidad",$lang).": <input type ='number' value ='$cantidad' class ='txtcantidad' name ='txtcantidadcart' id ='$producto' /></div>"
             . "<a href='' class ='botones-carro eliminar-item' id=' $producto'>Eliminar</a>"
             . "</div>"
             ."<div class =\"inline\">"
