@@ -63,7 +63,7 @@ Class ControllerCarrito extends ControllerMain{
     public function mostrarCarrito($lang){
         $objeProducto = ControllerMain::makeObjects("Productos",1);
         for($i = 0;$i< $_SESSION['contador'];$i++){
-                $campos = $objeProducto->selectProductoSengle($_SESSION['carrito'][$i]['producto'],$lang);
+            $campos = $objeProducto->selectProductoSengle($_SESSION['carrito'][$i]['producto'],$lang);
             $tallacolorsexo =$this->getTallasSexo($_SESSION['carrito'][$i]['sexo'],$_SESSION['carrito'][$i]['talla'],$lang,$_SESSION['carrito'][$i]['color']);
             $cantidad = $_SESSION['carrito'][$i]['cantidad'];
             $producto = $_SESSION['carrito'][$i]['id'];
@@ -81,6 +81,17 @@ Class ControllerCarrito extends ControllerMain{
             . "</div>"
             . "</div>";
         }
+        
+    }
+    public function totalCart($lang){
+        $valor ="";
+        for($i = 0;$i< $_SESSION['contador'];$i++){
+           //Consulto el producto para conocer su valor
+           $objeProducto = ControllerMain::makeObjects("Productos",1);
+           $campos = $objeProducto->selectProductoSengle($_SESSION['carrito'][$i]['producto'],$lang);
+           $valor = $valor + $campos['valoruno']*$_SESSION['carrito'][$i]['cantidad'];
+        }
+        return $valor;
     }
     public function eliminarItem($vector){
         $i = intval($vector['producto']);
