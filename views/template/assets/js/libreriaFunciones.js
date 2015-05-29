@@ -27,7 +27,7 @@ function verificarExistencia(talla,producto,idioma,color,cantidad,sexo){
             console.log(data);
             if(data != 1){
                 $("#mensaje").html(data);
-                 setTimeout( "limpirMensaje()", 2000 );
+                 setTimeout( "limpirMensaje('#mensaje')", 2000 );
                 sw = 1;
             }else{
                 sw = 0;
@@ -44,8 +44,8 @@ function verificarExistencia(talla,producto,idioma,color,cantidad,sexo){
     }
 
 }
-function limpirMensaje(){
-     $("#mensaje").html("");
+function limpirMensaje(caja){
+     $(caja).html("");
 }
 function traducir(text,idioma){
     $.post('accion-translateJava-Main',{text:text,idioma:idioma}, function(data){
@@ -70,6 +70,17 @@ function vaciarCarrito(idioma){
 }
 function eliminarItemcart(producto){
     $.post('accion-eliminarItem-Carrito',{producto:producto}, function(data){
-        location.reload(); 
+       location.reload(); 
+    });
+}
+function cambiarCantidad(cantidad,registro,idioma){
+     $.post('accion-modificarCantidadCart-Carrito',{cantidad:cantidad,registro:registro,idioma:idioma}, function(data){
+        console.log(data);
+        if(data==1){
+            location.reload();
+        }else{
+            $("#msg"+registro).html(data);
+            setTimeout("limpirMensaje('#msg"+registro+"')", 2000 );
+        }
     });
 }
