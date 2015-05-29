@@ -103,24 +103,15 @@ Class ControllerProductos extends ControllerMain{
                             ."<a id=\"btn-agregar-comprar\" pro = \"$value[idproductos]\"class =\"botones-carro\" href= \"#\">".$this->translate("Comprar",$lang)."</a>"
                             . "</div><br />"
                             . "<span id =\"mensaje\"></span>"; 
-//                   $valor = $value['valordos'] != "" ?"<span class= 'precio-old'>$ ".number_format($value['valordos'])." COP</span><br />": "";
-//
-//                   echo "<div class = 'titulo-producto'>$value[1]</div>";
-//                   echo "<div class = 'img-producto'><img src = 'public/productos/$value[imguno]'</div>";
-                   
-//                   echo "<div class = 'nombre-producto'></div>";
-//                   echo "<div>"
-//                   . "$valor"
-//                           . "<span class ='precio-now'>$ ".number_format($value['valoruno'])." COP </span></div>";
-//                   echo "</div></div>";
-//                   echo "</a>";
                     echo "</div>";
                }
-//               echo "</div>";
             }
         }
-        
-        
+ 
+    }
+    public function productosBruto($query){
+        $tallas = $this->_modelo->selectPersonalizado($query);
+        return $tallas->fetch(PDO::FETCH_ASSOC);
     }
     public function selectTallas($idproducto,$lang = "es" ){
         $checks ="";
@@ -175,10 +166,7 @@ Class ControllerProductos extends ControllerMain{
             }
             return $colores_select;
         }
-      
- 
     }
-    
     public function selectGenero($vector){
         $colores_select ="";
         $query = "SELECT color.*, colorexidioma.nombreidioma,inventario.sexo FROM inventario 
@@ -194,8 +182,7 @@ Class ControllerProductos extends ControllerMain{
                      echo "<option value ='2'>". $this->translate("Mujer", $vector['idioma'])."</option>";
                 }else{
                     if($itemgenero['sexo']==3){
-                        echo "<option value ='3'>". $this->translate("Mujer", $vector['idioma'])."</option>";
-                        echo "<option value ='3'>". $this->translate("Hombre", $vector['idioma'])."</option>";
+                        echo "<option value ='3'>". $this->translate("Ambos", $vector['idioma'])."</option>";
                     }
                 }
             }
@@ -223,7 +210,6 @@ Class ControllerProductos extends ControllerMain{
             echo "Error";
         }
     }
-
     public function selectCategorias($idProducto,$lang){
         $query = "SELECT categoriaxidioma.nombre from categorias 
         inner join categoriaxidioma on categorias.idcategorias = categoriaxidioma.categoria
@@ -231,52 +217,5 @@ Class ControllerProductos extends ControllerMain{
         where categoriaxidioma.idioma = '$lang' and categoriaxproducto.idproducto = $idProducto";
         $categorias = $this->_modelo->selectPersonalizado($query);
         return $categorias;
-    }
-    public function deleteNoticias($vector){
-        $request = $this->_modelNoticias->deleteNoticias($this->table,"idnoticias = $vector[id]");
-        if($request){
-                $this->redirect("index.php?vista=adminNoticias",0,$this->msg_good);
-        }else{
-                $this->redirect("index.php?vista=adminNoticias",0,$this->msg_error);
-        }
-    }
-    public function updateNoticia($vector){
-        $descripcion = str_replace("'", "\'", $vector['textnoticia']);
-        $descripcion = str_replace("\"", "\\\"", $descripcion);
-        $fields =$this->getFieldsTable($this->table);
-        unset($fields[0]);
-        $fields = array_values($fields);
-        $fields[0] .=" = '$vector[txtitulo]' ";
-        $fields[1] .= " = '$vector[txtfoto]' ";
-        $fields[2] .=" = \"$descripcion\" ";
-        $fields[3] .=" = '$vector[txtFecha]' ";
-        $fields[4] .=" = $vector[sltestado] ";
-        $where ="idnoticias = $vector[txtIdnoticia]"; 
-        $request = $this->_modelNoticias->updateNoticia($fields,$where,$this->table);
-        if($request){
-                $this->redirect("index.php?vista=adminNoticias",0,$this->msg_good);
-        }else{
-                $this->redirect("index.php?vista=adminNoticias",0,$this->msg_error);
-        }
-    }
-    function savaNoticia($vector){
-        $descripcion = str_replace("'", "\'", $vector['textnoticia']);
-        $descripcion = str_replace("\"", "\\\"", $descripcion);
-        $valores = array();
-        $campos = array();
-        $fiels =$this->getFieldsTable($this->table);
-        $valores[]="null";
-        $valores[]="'$vector[txtitulo]'";
-        $valores[]="'$vector[txtfoto]'";
-        $valores[]="\"$descripcion\"";
-        $valores[]="$vector[txtFecha]";
-        $valores[]="$vector[sltestado]";
-
-        $request = $this->_modelNoticias->savaNoticia($fiels,$valores,$this->table);
-        if($request){
-                echo 1;
-        }else{
-                echo 2;
-        }
     }
 }
