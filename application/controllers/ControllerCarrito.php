@@ -10,7 +10,6 @@ Class ControllerCarrito extends ControllerMain{
         $this->msg_error ="Error. Intente nuevamente, si el problema pesiste contáctenos";
         $this->msg_good ="La Operación se realiazo con exito";
     }
-
     public  function getFieldsTable($table){
             $vectorFields = array();
             $request_gross = $this->_modelNoticias->fieldDbase($table);
@@ -49,7 +48,7 @@ Class ControllerCarrito extends ControllerMain{
         for($i = 0;$i< $_SESSION['contador'];$i++){
             if($_SESSION['carrito'][$i]['producto']==$producto){
                 if($_SESSION['carrito'][$i]['talla']==$talla){
-                    if($_SESSION['carrito'][$i]['sexo']==$sexo && $_SESSION['carrito'][$i]['sexo'] != 3){
+                    if($_SESSION['carrito'][$i]['sexo']== $sexo){
                         if($_SESSION['carrito'][$i]['color']==$color){
                             return false;
                             break;
@@ -59,6 +58,22 @@ Class ControllerCarrito extends ControllerMain{
             }
         }
         return true;
+    }
+    public function modificarCantidadCart($vector){
+        $i = intval($vector['registro']);
+        $talla = $_SESSION['carrito'][$i]['talla'];
+        $color = $_SESSION['carrito'][$i]['color'];
+        $sexo = $_SESSION['carrito'][$i]['sexo'];
+        $objeProducto = ControllerMain::makeObjects("Productos",1);
+        $query ="SELECT * FROM tiendarigobertouran.inventario where idtalla = $talla and idcolor = $color and sexo = $sexo";
+        $camposInventario = $objeProducto->productosBruto($query);
+        if($vector['cantidad']>$camposInventario['cantidad']){
+            echo $this->translate("No hay suficiente existencia de este producto, actualmente hay ",$vector['idioma']).$camposInventario['cantidad'];
+        }else{
+            $_SESSION['carrito'][$i]['cantidad'] =$vector['cantidad'];
+            //echo $_SESSION['carrito'][$i]['cantidad']; 
+            echo 1;
+        }   
     }
     public function mostrarCarrito($lang){
         $objeProducto = ControllerMain::makeObjects("Productos",1);
@@ -73,15 +88,15 @@ Class ControllerCarrito extends ControllerMain{
             . "<div><span class =\"rosa-text\">$campos[nombrem]</span> <br /> $campos[nombre]</div>"
             . "<div><strong>".$this->translate("Referencia",$lang).": $campos[ref]</div>"
             .$tallacolorsexo
-            . "<div><strong>".$this->translate("Cantidad",$lang).": <input type ='number' value ='$cantidad' class ='txtcantidad' name ='txtcantidadcart' id ='$producto' /></div>"
+            . "<div><strong>".$this->translate("Cantidad",$lang).": <input type ='number' value ='$cantidad' cant='$cantidad' class ='txtcantidad' name ='txtcantidadcart' val ='$producto' /></div>"
+            . "<div id ='msg$producto' class ='existencia-cart'></div>"
             . "<a href='' class ='botones-carro eliminar-item' id=' $producto'>Eliminar</a>"
             . "</div>"
             ."<div class =\"inline\">"
             . "<span class =\"rosa-text\"> $ ".  number_format($campos['valoruno']*$_SESSION['carrito'][$i]['cantidad'])." COP </span>"
             . "</div>"
             . "</div>";
-        }
-        
+        }   
     }
     public function totalCart($lang){
         $valor ="";
@@ -94,7 +109,18 @@ Class ControllerCarrito extends ControllerMain{
         return $valor;
     }
     public function eliminarItem($vector){
+        print_r($vector);
         $i = intval($vector['producto']);
+        
+        for($x = $i+1;$x <= $_SESSION['contador'];$x++){
+            if($_SESSION['carrito'][$x]['id']-1<0){
+                $ind = 0;
+            }else{
+                $ind = $_SESSION['carrito'][$x]['id']-1;
+            }  
+            $_SESSION['carrito'][$x]['id'] = $ind;
+            echo   $_SESSION['carrito'][$x]['id'];
+        }
         unset($_SESSION['carrito'][$i]);
         $_SESSION['carrito'] = array_values($_SESSION['carrito']);
         $_SESSION['contador'] = $_SESSION['contador']-1;
