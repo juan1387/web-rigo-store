@@ -11,7 +11,7 @@
                     $obje = ControllerMain::makeObjects("Carrito",1);
                     $obje->mostrarCarrito($lang);
                     echo "<div class ='titulo-producto sengle-title-cart'><p style='text-align:center'>".$this->translate("Total a pagar",$lang)."</p></div>";
-                    echo "<div class ='sengle-title-cart'><p style='text-align:center'>".$obje->totalCart($lang)."</p></div>";
+                    echo "<div class ='sengle-title-cart'><p id ='total-pago' style='text-align:center'> $ ".number_format($obje->totalCart($lang))." COP</p></div>";
                 }else{
                     echo "<span class ='class vacio'>".$this->translate("Actualmente no hay productos en tu carrito",$lang)."</span>";
                 }

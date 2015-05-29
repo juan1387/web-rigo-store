@@ -403,6 +403,12 @@ sengle-title-cart{
     background-position-x: -160px;
     background-position-y: 0px;
 }
+#total-pago{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: #FF5165;
+}
 
 .tallas input[type ="radio"]{
     opacity: 0.4;
