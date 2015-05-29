@@ -10,7 +10,7 @@ $(document).ready(function(){
     $("input[type ='radio']").click(function(){
         talla = $(this).val();
         chequearColor(talla,$("#idproducto").attr('val'),$("#idproducto").attr('lan'));
-         selccionarGenero(talla,$("#idproducto").attr('val'),$("#idproducto").attr('lan'),color);
+        selccionarGenero(talla,$("#idproducto").attr('val'),$("#idproducto").attr('lan'),color);
     })
     $("#colores").change(function(){
         color = $("#colores option:selected").val(); 
@@ -56,6 +56,21 @@ $(document).ready(function(){
         var producto = $(this).attr("id");
         eliminarItemcart(producto);
     })
+    $(".txtcantidad").bind('keyup mouseup', function () {
+        //Obtengo el registro que quiero modificarle la cantidad
+        var idres = $(this).attr("val");
+        //Obtengo la cantidad de origen
+        var idioma = $("#info-web").attr('lan');
+        var cantorigen = $(this).attr("cant");
+        var cantidad = $(this).val();
+        if(cantidad != cantorigen) {
+            color = $("#colores option:selected").val(); 
+            producto = $("#idproducto").attr('val');
+            color = $("#colores option:selected").val(); 
+            cambiarCantidad(cantidad,idres,idioma);
+            sexo = $("#sltgenero option:selected").val(); 
+        }      
+    });
 })
 
 
