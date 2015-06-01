@@ -70,9 +70,11 @@ Class ControllerCarrito extends ControllerMain{
         if($vector['cantidad']>$camposInventario['cantidad']){
             echo $this->translate("No hay suficiente existencia de este producto, actualmente hay ",$vector['idioma']).$camposInventario['cantidad'];
         }else{
-            $_SESSION['carrito'][$i]['cantidad'] =$vector['cantidad'];
+            $_SESSION['carrito'][$i]['cantidad'] = $vector['cantidad'];
             //echo $_SESSION['carrito'][$i]['cantidad']; 
-            echo 1;
+            $objeProducto = ControllerMain::makeObjects("Productos",1);
+            echo $objeProducto->selectCantidad($camposInventario['cantidad'],'es',2,$vector['cantidad']);
+            
         }   
     }
     public function mostrarCarrito($lang){
@@ -82,13 +84,22 @@ Class ControllerCarrito extends ControllerMain{
             $tallacolorsexo =$this->getTallasSexo($_SESSION['carrito'][$i]['sexo'],$_SESSION['carrito'][$i]['talla'],$lang,$_SESSION['carrito'][$i]['color']);
             $cantidad = $_SESSION['carrito'][$i]['cantidad'];
             $producto = $_SESSION['carrito'][$i]['id'];
+            $arryQuery = array(
+               "producto"=>$_SESSION['carrito'][$i]['producto'],
+               "color"=>$_SESSION['carrito'][$i]['color'],
+               "talla"=>$_SESSION['carrito'][$i]['talla'],
+               "sexo"=>$sexo = $_SESSION['carrito'][$i]['sexo']);
+            $queryCantidadProducto = "SELECT cantidad FROM inventario where idproducto = $arryQuery[producto] and idtalla = $arryQuery[talla] and idcolor = $arryQuery[color] and sexo = $arryQuery[sexo];";
+            $cantidadProducto = $objeProducto->productosBruto($queryCantidadProducto);
             echo "<div class=\"producto-cart-block\">"
             . "<div class =\"inline \" ><div class=\"foto-cart\"><img src = 'public".DS."productos".DS."$campos[imguno]' alt='$campos[seo]' /></div></div>"
             . "<div class =\"inline info-cart-pro\">"
             . "<div><span class =\"rosa-text\">$campos[nombrem]</span> <br /> $campos[nombre]</div>"
             . "<div><strong>".$this->translate("Referencia",$lang).": $campos[ref]</div>"
             .$tallacolorsexo
-            . "<div><strong>".$this->translate("Cantidad",$lang).": <input type ='number' value ='$cantidad' cant='$cantidad' class ='txtcantidad' name ='txtcantidadcart' val ='$producto' /></div>"
+            . "<div><strong>".$this->translate("Cantidad",$lang).":<select id ='cant$producto'  pro ='$producto' name = 'txtcantidadcart' class ='txtcantidad'>"
+                            .$objeProducto->selectCantidad($cantidad,$lang,2,$cantidadProducto['cantidad'])
+                            . "</select></div>"
             . "<div id ='msg$producto' class ='existencia-cart'></div>"
             . "<a href='' class ='botones-carro eliminar-item' id=' $producto'>Eliminar</a>"
             . "</div>"
