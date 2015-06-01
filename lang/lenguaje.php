@@ -1,5 +1,4 @@
 <?php
-
     $es = array(
         "Referencia"=>"Referencia",
         "Productos"=>"Productos",
@@ -20,6 +19,7 @@
         "No hay suficiente existencia de este producto, actualmente hay "=>"No hay suficiente existencia de este producto, actualmente hay ",
         "Genero"=>"Genero",
         "Cantidad"=>"Cantidad",
+        "Cant"=>"Cant",
         "Seleccione"=>"Seleccione","No hay valores en tallas"=>"No hay valores en tallas",
         "No hay valores en cantidad"=>"No hay valores en cantidad",
         "No hay valores en color"=>"No hay valores en color",
@@ -32,7 +32,8 @@
         "Precio"=>"Precio",
         "Talla"=>"Talla",
         "Eliminar"=>"Eliminar",
-        "Total a pagar"=>"Total a pagar"
+        "Total a pagar"=>"Total a pagar",
+        "Efectuar compra"=>"Efectuar compra"
         );
     
     $it = array("Referencia"=>"Riferimento",
@@ -50,7 +51,9 @@
         "Añadir al carrito"=>"Aggiungi al carrello" ,
         "Comprar"=>"Acquistare",
         "No hay suficiente existencia de este producto, actualmente hay "=>"Esistenza insufficiente di questo prodotto, vi sono attualmente ",
-        "Genero"=>"Genero","Cantidad"=>"Quantità",
+        "Genero"=>"Genero",
+        "Cantidad"=>"Quantità",
+        "Cant"=>"Qua",
         "Seleccione"=>"selezionare",
         "No hay valores en tallas"=>"Nessun valore nei formati",
         "No hay valores en cantidad"=>"Nessun valore importo",
@@ -64,10 +67,9 @@
         "Precio"=>"Prezzo",
         "Talla"=>"Taglia",
          "Eliminar"=>"Rimuovere",
-        "Total a pagar"=>"Totale da pagare"
+        "Total a pagar"=>"Totale da pagare",
+        "Efectuar compra"=>"Fare acquisti"
         );
-    
-    
     $en = array("Referencia"=>"Reference",
         "Productos"=>"Products",
         "Relacionados"=>"Related",
@@ -82,7 +84,10 @@
         "Ambos"=>"Both","Añadir al carrito"=>"Add to Basket",
         "Comprar"=>"Buy",
         "No hay suficiente existencia de este producto, actualmente hay "=>"Insufficient existence of this product, there are currently ",
-         "Genero"=>"Gender","Cantidad"=>"Quantity", "Seleccione"=>"Select","No hay valores en tallas"=>"No values in sizes",
+         "Genero"=>"Gender",
+        "Cantidad"=>"Quantity",
+         "Cant"=>"Quan",
+        "Seleccione"=>"Select","No hay valores en tallas"=>"No values in sizes",
         "No hay valores en cantidad"=>"No amount values",
         "No hay valores en color"=>"No color values",
         "No hay valores en sexo"=>"There is no value in sex ",
@@ -94,5 +99,6 @@
         "Precio"=>"Price",
         "Talla"=>"Size",
          "Eliminar"=>"Remove",
-        "Total a pagar"=>"Total to pay"
+        "Total a pagar"=>"Total to pay",
+        "Efectuar compra"=>"Make purchase"
         );
