@@ -16,12 +16,20 @@ $(document).ready(function(){
         color = $("#colores option:selected").val(); 
         selccionarGenero(talla,$("#idproducto").attr('val'),$("#idproducto").attr('lan'),color);
     })
+    $("#sltgenero").change(function(){
+        color = $("#colores option:selected").val(); 
+        producto = $("#idproducto").attr('val');
+        idioma = $("#idproducto").attr('lan');
+        color = $("#colores option:selected").val(); 
+        sexo = $("#sltgenero option:selected").val(); 
+        cargarExistencias(talla,producto,idioma,color,sexo);
+    })
     $("#btn-agregar-carro").click(function(){
         color = $("#colores option:selected").val(); 
         producto = $("#idproducto").attr('val');
         idioma = $("#idproducto").attr('lan');
         color = $("#colores option:selected").val(); 
-        cantidad =$("input[name ='txtcantidad']").val();
+        cantidad =$("#txtcantidad option:selected").val();
         sexo = $("#sltgenero option:selected").val(); 
         if(talla == ""){
             traducir("No hay valores en tallas",idioma)
@@ -32,19 +40,14 @@ $(document).ready(function(){
                 if(sexo == 0){
                     traducir("No hay valores en sexo",idioma)
                 }else{
-                    if(cantidad == ""){
+                    if(cantidad == 0){
                         traducir("No hay valores en cantidad",idioma)
                     }else{
-                        
-                        if(verificarExistencia(talla,producto,idioma,color,cantidad,sexo)){
-                            agregarCarrito(talla,producto,idioma,color,cantidad,sexo);
-                        }else{
-                        } 
+                        agregarCarrito(talla,producto,idioma,color,cantidad,sexo);
                     }
                 }
             }
         }
-        
     })
     $("#btn-vaciar").click(function(event){
          event.preventDefault();
@@ -56,20 +59,18 @@ $(document).ready(function(){
         var producto = $(this).attr("id");
         eliminarItemcart(producto);
     })
-    $(".txtcantidad").bind('keyup mouseup', function () {
+    $(".txtcantidad").change(function () {
         //Obtengo el registro que quiero modificarle la cantidad
-        var idres = $(this).attr("val");
         //Obtengo la cantidad de origen
         var idioma = $("#info-web").attr('lan');
-        var cantorigen = $(this).attr("cant");
-        var cantidad = $(this).val();
-        if(cantidad != cantorigen) {
-            color = $("#colores option:selected").val(); 
-            producto = $("#idproducto").attr('val');
-            color = $("#colores option:selected").val(); 
-            cambiarCantidad(cantidad,idres,idioma);
-            sexo = $("#sltgenero option:selected").val(); 
-        }      
+        var id = $(this).attr('id');
+        var idres = $(this).attr('pro');
+        var cantidad = $("#"+id+" option:selected").val();
+        color = $("#colores option:selected").val(); 
+        producto = $("#idproducto").attr('val');
+        color = $("#colores option:selected").val(); 
+        cambiarCantidad(cantidad,idres,idioma);
+        sexo = $("#sltgenero option:selected").val(); 
     });
 })
 
