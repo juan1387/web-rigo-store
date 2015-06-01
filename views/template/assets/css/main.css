@@ -122,11 +122,14 @@ ul{
   padding-left: 2% !important;
   background: rgba(0,0,0,0.2);
 }
-.content-info{
-    margin: 5px 0px;
-}
-#content-cong-cart{
 
+#btn-pagar{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    background:#FF5165;
+    color: #fff;
 }
 #btn-eliminar-item{
      color: #fff;
@@ -137,6 +140,16 @@ ul{
     text-decoration: none;
     color: #fff;
     background: #FF5165;
+}
+#contenedor-boton-pagar{
+    text-align: right !important;
+}
+
+#content-cong-cart{
+
+}
+.content-info{
+    margin: 5px 0px;
 }
 .color-rosa{
    color:#FF5165;
