@@ -96,7 +96,9 @@ Class ControllerProductos extends ControllerMain{
                    echo "<div class=\" content-info\"><strong>".$this->translate("Genero",$lang).":</strong>"
                    . "<select id =\"sltgenero\"><option value =\"0\">".$this->translate("Seleccione",$lang). " ".$this->translate("Genero",$lang)."</option></select></div>";
                     echo "<div class=\" content-info\"><strong>".$this->translate("Cantidad",$lang).":</strong>"
-                   . "<input type=\"number\" name =\"txtcantidad\" min=\"1\" max =\"20\"></div>"
+                   ."<select id ='txtcantidad' name = 'txtcantidad'>"
+                            . "<option value ='0'>".$this->translate("Cant",$lang)."</option>"
+                            . "</select></div>"
                             . "<div class = \"valor-producto-carro\"> $ ".number_format($value['valoruno'])." C0P</div>"
                             . "<div class =\"botonera-carro\">"
                             . "<a id=\"btn-agregar-carro\" pro = \"$value[idproductos]\" class =\"botones-carro\" href= \"#\">".$this->translate("Añadir al carrito",$lang)."</a>"
@@ -190,6 +192,7 @@ Class ControllerProductos extends ControllerMain{
         }
     }
     public function  consultarExistencia($vector){
+        
         $query = "SELECT color.*,inventario.sexo,inventario.cantidad,inventario.idtalla,inventario.idcolor  
         FROM inventario 
         inner join color on inventario.idcolor = color.idcolor  
@@ -201,11 +204,7 @@ Class ControllerProductos extends ControllerMain{
         $vectorValor = $existencia->fetch(PDO::FETCH_ASSOC);
         $num_rows = $existencia->rowCount();
         if($num_rows>=0){
-            if($vectorValor['cantidad']>= $vector['cantidad']){
-                echo 1; 
-            }else{
-                echo $this->translate("No hay suficiente existencia de este producto, actualmente hay ", $vector['idioma']).$vectorValor['cantidad'];
-            }
+           echo  $this->selectCantidad($vectorValor['cantidad'],$vector['idioma']);
         }else{
             echo "Error";
         }
