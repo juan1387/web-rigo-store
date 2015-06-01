@@ -111,6 +111,34 @@ Class ControllerProductos extends ControllerMain{
         }
  
     }
+    public function selectCantidad($cantidad,$lang, $sw=1,$cantOr=false){
+        if($sw==1){
+            $select = "<option value ='0'>".$this->translate("Cant",$lang)."</option>";
+            for ($index = 1; $index <= $cantidad; $index++) {
+                $select .= "<option value ='$index'>$index</option>";
+            }
+        }else if($sw==2){
+            $select = "";
+            if($cantOr != false){
+                for ($index = 1; $index <= $cantOr; $index++) {
+                    if($cantidad==$index){
+                         $select .= "<option selected='' value ='$index'>$index</option>";
+                    }else{
+                         $select .= "<option value ='$index'>$index</option>";
+                    }
+                }
+            }else{
+                  for ($index = 1; $index <= $cantidad; $index++) {
+                    if($cantidad==$index){
+                         $select .= "<option selected='' value ='$index'>$index</option>";
+                    }else{
+                         $select .= "<option value ='$index'>$index</option>";
+                    }
+                }
+            }
+        }
+        return $select;
+    }
     public function productosBruto($query){
         $tallas = $this->_modelo->selectPersonalizado($query);
         return $tallas->fetch(PDO::FETCH_ASSOC);
