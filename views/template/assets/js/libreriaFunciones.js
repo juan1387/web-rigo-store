@@ -16,34 +16,33 @@ function asignar(val){
        return true;
    }
 }
-
-function verificarExistencia(talla,producto,idioma,color,cantidad,sexo){
-    $.ajax({
-        url: 'accion-consultarExistencia-Productos',
-        async: false,   // this is the important line that makes the request sincronous
-        type: 'post',
-        data:{talla:talla,producto:producto,idioma:idioma,color:color,cantidad:cantidad,sexo:sexo},
-        success: function(data) {
-            console.log(data);
-            if(data != 1){
-                $("#mensaje").html(data);
-                 setTimeout( "limpirMensaje('#mensaje')", 2000 );
-                sw = 1;
-            }else{
-                sw = 0;
-            }
-        },
-        error: function(data){
-            console.log(data);
-        }
-    });
-    if(sw==0){
-        return true
-    }else{
-        return false;
-    }
-
-}
+//function verificarExistencia(talla,producto,idioma,color,cantidad,sexo){
+//    $.ajax({
+//        url: 'accion-consultarExistencia-Productos',
+//        async: false,   // this is the important line that makes the request sincronous
+//        type: 'post',
+//        data:{},
+//        success: function(data) {
+//            console.log(data);
+//            if(data != 1){
+//                $("#mensaje").html(data);
+//                 setTimeout( "limpirMensaje('#mensaje')", 2000 );
+//                sw = 1;
+//            }else{
+//                sw = 0;
+//            }
+//        },
+//        error: function(data){
+//            console.log(data);
+//        }
+//    });
+//    if(sw==0){
+//        return true
+//    }else{
+//        return false;
+//    }
+//
+//}
 function limpirMensaje(caja){
      $(caja).html("");
 }
@@ -75,12 +74,11 @@ function eliminarItemcart(producto){
 }
 function cambiarCantidad(cantidad,registro,idioma){
      $.post('accion-modificarCantidadCart-Carrito',{cantidad:cantidad,registro:registro,idioma:idioma}, function(data){
-        console.log(data);
-        if(data==1){
-            location.reload();
-        }else{
-            $("#msg"+registro).html(data);
-            setTimeout("limpirMensaje('#msg"+registro+"')", 2000 );
-        }
+      location.reload();
+    });
+}
+function cargarExistencias(talla,producto,idioma,color,sexo){
+     $.post('accion-consultarExistencia-Productos',{talla:talla,producto:producto,idioma:idioma,color:color,sexo:sexo}, function(data){
+        $("#txtcantidad").html(data);
     });
 }
