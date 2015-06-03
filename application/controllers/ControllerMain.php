@@ -12,6 +12,7 @@ class ControllerMain {
     }
 
     private function loguin($array) {
+        $_SESSION['sessionusuario'];
         $where = "loguin = '$array[user]' and pwd = '$array[pwd]' and estado = 1";
         $_SESSION['loguin'] = "12";
         $_SESSION['XBesX'] = "2";
