@@ -5,10 +5,13 @@
 <title>Titulo de la web</title>
 <meta charset="utf-8" />
     <?php  echo $this->_objMain->cargarRecursos('main'); ?>
+    <link rel="stylesheet" href="<?php echo LIBRARYS;?>fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="<?php echo LIBRARYS;?>fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+   
 </head>
 <script>
     $(document).ready(function(){
-       
+  
         $("ul#idiomas li a").click(function(event) {
             var obj = $(this);
             urlLan(obj,1);
