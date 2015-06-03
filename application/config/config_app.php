@@ -22,7 +22,7 @@
     define('MODELS',APP_PATH.'models'.DS);
     define('VIEWS',APP_PATH.'view'.DS);
    
-    define('LIBRARYS_LOCAL', $_SERVER["DOCUMENT_ROOT"].DS."microstio_chevignon".DS."library".DS);
+    define('LIBRARYS_LOCAL', $_SERVER["DOCUMENT_ROOT"].DS."framework_v2".DS."library".DS);
     define('LIBRARYS',BASE_URL.'library'.DS);
     define('LIBRARYS_ADMIN',"..".DS.BASE_URL.'library'.DS);
     
