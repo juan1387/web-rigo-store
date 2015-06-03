@@ -6,9 +6,9 @@
     define('APP_COMPANY', 'www.drink.com.co');
     
     //DATOS DE LA BASE DE DATOS
-    define('DB_HOST', 'localhost');
-    define('DB_USER', 'root');
-    define('DB_PASS', '23camilo');
+    define('DB_HOST', '');
+    define('DB_USER', '');
+    define('DB_PASS', '');
     define('DB_NAME', 'tiendarigobertouran');
     define('DB_CHAR', 'utf8');
     //RUTAS PARA RENDERIZAR
