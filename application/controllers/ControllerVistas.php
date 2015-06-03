@@ -79,4 +79,11 @@ class ControllerVista extends ControllerMain {
 //        }
 //        require_once($path_defaulf . 'footerFancy.phtml');
 //    }
+    public function renderizarFancy($vista) {
+        if (file_exists(VISTAS.$vista.".phtml")) {
+            require_once(VISTAS.$vista.'.phtml');
+        } else {
+            echo "<span class ='mensaje_delsistema'>Esta sección no existe</span>";
+        }
+    }
 }
