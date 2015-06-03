@@ -50,9 +50,9 @@ $(document).ready(function(){
         }
     })
     $("#btn-vaciar").click(function(event){
-         event.preventDefault();
-         idioma = $("#info-web").attr('lan');
-         vaciarCarrito(idioma);
+        event.preventDefault();
+        idioma = $("#info-web").attr('lan');
+        vaciarCarrito(idioma);
     })
     $(".eliminar-item").click(function(event){
         event.preventDefault();
@@ -72,6 +72,34 @@ $(document).ready(function(){
         cambiarCantidad(cantidad,idres,idioma);
         sexo = $("#sltgenero option:selected").val(); 
     });
+    $("#btn-pagar").click(function(event){
+        event.preventDefault();
+        var idioma = $("#info-web").attr('lan')
+        var fancy = validarSession(idioma,$(this));
+        alert(fancy);
+        if(fancy == 1){
+            location.href=idioma+"-tramitarpedido";
+        }else{
+            $(this).attr("href","loguin-"+idioma+"-loguin");
+            $("#btn-pagar").fancybox({
+                maxWidth    : 334,
+                 maxHeight   : 261,
+
+                 'autoScale' : true,
+                 'transitionIn' : 'none',
+                 'transitionOut' : 'none',
+                 'type' : 'iframe'
+               });
+            $(this).fancybox({
+            maxWidth    : 334,
+            maxHeight   : 261,
+            'autoScale' : true,
+            'transitionIn' : 'none',
+            'transitionOut' : 'none',
+            'type' : 'iframe'
+            });
+        }
+    })
 })
 
 
