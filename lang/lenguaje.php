@@ -33,7 +33,10 @@
         "Talla"=>"Talla",
         "Eliminar"=>"Eliminar",
         "Total a pagar"=>"Total a pagar",
-        "Efectuar compra"=>"Efectuar compra"
+        "Efectuar compra"=>"Efectuar compra",
+        "Nombre de usuario"=>"Nombre de usuario",
+        "Olvide la contraseña"=>"Olvide la contraseña",
+        "Contraseña"=>"Contraseña"
         );
     
     $it = array("Referencia"=>"Riferimento",
@@ -68,7 +71,10 @@
         "Talla"=>"Taglia",
          "Eliminar"=>"Rimuovere",
         "Total a pagar"=>"Totale da pagare",
-        "Efectuar compra"=>"Fare acquisti"
+        "Efectuar compra"=>"Fare acquisti",
+        "Nombre de usuario"=>"Nome utente",
+        "Olvide la contraseña"=>"Password dimenticata",
+        "Contraseña"=>"Password"
         );
     $en = array("Referencia"=>"Reference",
         "Productos"=>"Products",
@@ -100,5 +106,8 @@
         "Talla"=>"Size",
          "Eliminar"=>"Remove",
         "Total a pagar"=>"Total to pay",
-        "Efectuar compra"=>"Make purchase"
+        "Efectuar compra"=>"Make purchase",
+        "Nombre de usuario"=>"Username",
+         "Olvide la contraseña"=>"Forget your password",
+        "Contraseña"=>"Password"
         );
