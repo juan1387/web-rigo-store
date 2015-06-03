@@ -173,4 +173,19 @@ Class ControllerCarrito extends ControllerMain{
         $htmlcolor = "<div><strong>".$this->translate("Color", $lang).": </strong>$querycolor[nombreidioma]</div>";
         return "<div class ='info-basica-cart'>$htmlsexo  $htmltallas  $htmlcolor </div>";
     }
+    private function validarLoguin(){
+        
+       
+    }
+
+    public function  pagarProductos($vector){
+        $formIniciarPago ="$vector[idioma]-formPago";
+        
+        if(isset($_SESSION['sessionusuario'])){
+           echo  0;
+        }else{
+           echo $formIniciarPago;
+           
+        }
+    }
 }
