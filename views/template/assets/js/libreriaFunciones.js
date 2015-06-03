@@ -1,4 +1,5 @@
-  var sw;
+var sw;
+var fancy;
 function chequearColor(talla,producto,idioma){
     $.post('accion-selectColor-Productos',{talla:talla,producto:producto,idioma:idioma}, function(data){
        $("#colores").html(data);
@@ -78,7 +79,26 @@ function cambiarCantidad(cantidad,registro,idioma){
     });
 }
 function cargarExistencias(talla,producto,idioma,color,sexo){
-     $.post('accion-consultarExistencia-Productos',{talla:talla,producto:producto,idioma:idioma,color:color,sexo:sexo}, function(data){
+    $.post('accion-consultarExistencia-Productos',{talla:talla,producto:producto,idioma:idioma,color:color,sexo:sexo}, function(data){
         $("#txtcantidad").html(data);
     });
+}
+function validarSession(idioma,objeto){
+    $.ajax({
+        url: 'accion-pagarProductos-Carrito',
+        async: false,   // this is the important line that makes the request sincronous
+        type: 'post',
+        data:{idioma:idioma},
+        success: function(data) {
+           if(data != 0){
+               fancy = data;
+            }else{
+                fancy = 1;
+            }
+        },
+        error: function(data){
+            console.log(data);
+        }
+    });
+    return fancy;
 }
