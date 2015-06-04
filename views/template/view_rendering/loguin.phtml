@@ -166,7 +166,7 @@
               box-shadow:2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px #95a2a7 inset;
               margin:3px 0 4px;
               padding:8px 6px;
-              width:270px;
+              width:293px;
               display:block;
           }
           .box input[type=text]:focus,
@@ -222,15 +222,13 @@
             -webkit-border-radius: 3px;
             border: 1px solid #FF5165;
           }
-
-      
           footer#main{
-                  position:fixed;
-                  left:0;
-                  bottom:10px;
-                  text-align:center;
-                  font:normal 11px/16px Arial, Helvetica, sans-serif;
-                  width:100%;
+                position:fixed;
+                left:0;
+                bottom:10px;
+                text-align:center;
+                font:normal 11px/16px Arial, Helvetica, sans-serif;
+                width:100%;
           }
 
 </style>
@@ -242,6 +240,7 @@
 </head>
 <?php $lang = $_GET['lang']; ?>
 <body>
+
 <form class="box login">
 	<fieldset class="boxBody">
 	  <label><?php echo $this->translate("Nombre de usuario",$lang); ?></label>

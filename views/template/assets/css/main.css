@@ -43,9 +43,6 @@
 
 }
 
-
-
-
 @font-face {
     font-family: 'ubuntulight';
     src: url('fonts/ubuntu-l-webfont.eot');
@@ -63,11 +60,22 @@
     padding: 0;
 }
 html, body{
-    height: 100%;
     
+    
+}
+footer{
+    width: 100%;
+    height: 133px;
+    background: #FF5165;
+    color: #fff;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 20px;
+
 }
 body{
     font-family: "ubuntulight";
+   
 }
 ._li{
     width: 100%;
@@ -85,6 +93,15 @@ header a{
 }
 ul{
     list-style: none;
+}
+#btn-enviar-registro{
+    background: #FF5165;
+    color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    margin-top: 20px;
+
 }
 .botones-carro{
     display: inline-block;
@@ -135,6 +152,10 @@ ul{
      color: #fff;
     background: #FF5165;    
 }
+#cantidad-cart{
+    position: relative;
+    top: -8px;
+}
 #content-cong-cart #btn-vaciar{
     float: right;
     text-decoration: none;
@@ -147,6 +168,10 @@ ul{
 
 #content-cong-cart{
 
+}
+.content-button{
+    text-align: center;
+    margin: 5px 0px;
 }
 .content-info{
     margin: 5px 0px;
@@ -225,11 +250,60 @@ ul{
     max-width: 959px;
     text-align: right;
 }
+#form-registro{
+    margin-top: 30px;
+}
+#form-registro .inline{
+    width: 49%;
+    clear: both;
+}
+#form-registro .rows{
+    overflow: hidden;
+    margin: 10px 0px;
+}
+#form-registro select,
+#form-registro  input[type ="text"],
+#form-registro input[type ="mail"],
+#form-registro input[type ="password"]{
+    box-sizing: border-box;
+    display: block;
+    padding-left: 3px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #d1d1d1;
+}
+#form-registro select{
+    background: URL(../img/rigo-arrow.png) no-repeat 100.1% 0px #fff !important;
+    float: left;
+    padding-top: 5px;
+    padding-bottom: 7px !important;
+    -webkit-border-radius: 4px;
+}
+#form-registro .label-form select, 
+#form-registro .label-form label, 
+#form-registro .label-form input[type ="text"] ,
+#form-registro .label-form input[type ="mail"],
+#form-registro .label-form input[type ="password"] {
+    float: left;
+    width: 100%;
+    max-width: 325px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    -webkit-border-radius: 3px;
+}
+#form-registro .label-form label { 
+    display: inline-block;
+    width: 100%;
+    max-width: 200px;
+    text-align: left; 
+}
+
 .foto-cart{
     width: 320px;
     height: 220px;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
 }
 .foto-cart img{
     position:absolute; /*El div debe tener la propiedad position distinta de static*/
@@ -288,9 +362,13 @@ ul{
 #last{
     margin-right: 0px !important;
 }
+#main-section{
+    background: #fff;
+}
 .mini{
     width: 60px;
 }
+
 #mensaje{
     color:#FF5165;
 }
@@ -380,17 +458,6 @@ sengle-title-cart{
     text-align: left !important;
     padding-left: 30px !important;
 }
-#redesHeader .redes li a {
-    display: block;
-    background: url(../img/socialgrid1.png);
-    background-repeat: no-repeat;
-      width: 16px;
-    height: 16px;
-}
-.rosa-text{
-    color:#FF5165 ;
-    font-size:16px;
-}
 #redesHeader .redes li{
   display: inline-block;
   vertical-align: top;
@@ -416,6 +483,21 @@ sengle-title-cart{
     background-position-x: -160px;
     background-position-y: 0px;
 }
+#redesHeader .redes li a {
+    display: block;
+    background: url(../img/socialgrid1.png);
+    background-repeat: no-repeat;
+      width: 16px;
+    height: 16px;
+}
+.required{
+    color: #FF5165;
+}
+.rosa-text{
+    color:#FF5165 ;
+    font-size:16px;
+}
+
 #total-pago{
     text-align: center;
     font-weight: bold;
@@ -439,6 +521,7 @@ sengle-title-cart{
 .titulos-rigo{
     font-size: 3em;
     font-style: italic;
+    margin: 35px 0px;
 }
 .titulo-producto{
     padding-top: 3px;

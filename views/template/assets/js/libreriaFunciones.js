@@ -1,5 +1,6 @@
 var sw;
 var fancy;
+  
 function chequearColor(talla,producto,idioma){
     $.post('accion-selectColor-Productos',{talla:talla,producto:producto,idioma:idioma}, function(data){
        $("#colores").html(data);

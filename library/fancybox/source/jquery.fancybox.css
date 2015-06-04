@@ -22,6 +22,7 @@
 	top: 0;
 	left: 0;
 	z-index: 8020;
+     
 }
 
 .fancybox-skin {
@@ -185,6 +186,7 @@
 	display: none;
 	z-index: 8010;
 	background: url('fancybox_overlay.png');
+        
 }
 
 .fancybox-overlay-fixed {

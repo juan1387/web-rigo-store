@@ -4,9 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Volumes/INFORMACION/GITHUB/web-rigo-store/views/template/view_rendering/cart.phtml</file>
+            <file>file:/Volumes/INFORMACION/GITHUB/web-rigo-store/views/template/view_rendering/loguin.phtml</file>
             <file>file:/Volumes/INFORMACION/GITHUB/web-rigo-store/views/template/view_basic/header.phtml</file>
             <file>file:/Volumes/INFORMACION/GITHUB/web-rigo-store/application/controllers/ControllerCarrito.php</file>
             <file>file:/Volumes/INFORMACION/GITHUB/web-rigo-store/index.php</file>
+            <file>file:/Volumes/INFORMACION/GITHUB/web-rigo-store/views/template/view_rendering/myaccount.phtml</file>
             <file>file:/Volumes/INFORMACION/GITHUB/web-rigo-store/application/controllers/ControllerMain.php</file>
             <file>file:/Volumes/INFORMACION/GITHUB/web-rigo-store/views/template/assets/js/main.js</file>
             <file>file:/Volumes/INFORMACION/GITHUB/web-rigo-store/views/template/assets/js/libreriaFunciones.js</file>

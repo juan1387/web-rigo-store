@@ -36,7 +36,8 @@
         "Efectuar compra"=>"Efectuar compra",
         "Nombre de usuario"=>"Nombre de usuario",
         "Olvide la contraseña"=>"Olvide la contraseña",
-        "Contraseña"=>"Contraseña"
+        "Contraseña"=>"Contraseña",
+        "Cuenta"=>"Cuenta"
         );
     
     $it = array("Referencia"=>"Riferimento",
@@ -74,7 +75,8 @@
         "Efectuar compra"=>"Fare acquisti",
         "Nombre de usuario"=>"Nome utente",
         "Olvide la contraseña"=>"Password dimenticata",
-        "Contraseña"=>"Password"
+        "Contraseña"=>"Password",
+        "Cuenta"=>"Conto"
         );
     $en = array("Referencia"=>"Reference",
         "Productos"=>"Products",
@@ -109,5 +111,6 @@
         "Efectuar compra"=>"Make purchase",
         "Nombre de usuario"=>"Username",
          "Olvide la contraseña"=>"Forget your password",
-        "Contraseña"=>"Password"
+        "Contraseña"=>"Password",
+        "Cuenta"=>"Account"
         );

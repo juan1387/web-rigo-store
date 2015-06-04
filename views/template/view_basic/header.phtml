@@ -5,13 +5,26 @@
 <title>Titulo de la web</title>
 <meta charset="utf-8" />
     <?php  echo $this->_objMain->cargarRecursos('main'); ?>
+   
     <link rel="stylesheet" href="<?php echo LIBRARYS;?>fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
     <script type="text/javascript" src="<?php echo LIBRARYS;?>fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-   
+    <script>
+            $(".fancybox").fancybox({
+            maxWidth    : 334,
+             maxHeight   : 261,
+             'autoScale' : false,
+             'transitionIn' : 'none',
+             'transitionOut' : 'none',
+             'type' : 'iframe'
+       });
+      
+    </script>
+       
+    
 </head>
 <script>
     $(document).ready(function(){
-  
+     
         $("ul#idiomas li a").click(function(event) {
             var obj = $(this);
             urlLan(obj,1);
@@ -30,7 +43,16 @@
                 location.href =obj.sw+"-"+url;
             }
         }
-        })   
+       //para llevar el footer siempre al bottom 0;
+        var window_height = $(window).height();
+        var page_height = $('#header-center').height() + $('#main-section').height();
+        var footer_height = $('footer').height();
+        if (page_height < window_height) {
+            margin_footer = window_height - page_height - footer_height;
+            $('footer').css('margin-top', margin_footer);
+        }
+        })
+         
 </script>
 <body>
     <header>
@@ -45,7 +67,7 @@
                             $this->_objMain->cargarIdiomas();
                         ?>
                     </div>
-                    <div class ="inline cart-tool" ><a href="#" class ="inicio-sesion"><?php echo $this->translate("Iniciar sesión",$lang);?></a> / <a href="#" class ="inicio-sesion"><?php echo $this->translate("Registrarse",$lang);?></a></div>
+                    <div class ="inline cart-tool" ><a href="loguin-es-loguin" class ="inicio-sesion fancybox"><?php echo $this->translate("Iniciar sesión",$lang);?></a> / <a href="<?php echo $lang; ?>-myaccount" class ="inicio-sesion"><?php echo $this->translate("Registrarse",$lang);?></a></div>
                     <div class ="inline cart-tool" id="img-cart"><a href="es-cart"><img src="<?php echo RECURSOS;?>img<?php echo DS; ?>cart-buy.png" alt="Cart rigo store" />
                      <span id ='cantidad-cart' >     <?php
                      $_SESSION['contador'] = (isset($_SESSION['contador']))?$_SESSION['contador']:"";
@@ -68,5 +90,5 @@
             </div>
         </div>
     </header>
-    <section>
+    <section id ="main-section">
    

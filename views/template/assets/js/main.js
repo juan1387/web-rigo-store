@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  
     var talla;
     var color;
     var producto;

@@ -198,7 +198,7 @@ class ControllerMain {
 
     public function loadslider($nombre,$idioma){
        $recursos = $this-> cargarRecursos("slider");
-         echo $recursos;
+         echo $recursos;    
         $queryConfi ="select configuracionslider.alto,
         configuracionslider.animacion,  configuracionslider.ancho,  configuracionslider.control, 
         configuracionslider.navegacion, configuracionslider.reproduccion 
@@ -208,6 +208,7 @@ class ControllerMain {
                 . "where itemslider.idioma = '$idioma' and slider.nombre ='$nombre'";
         $configurarionSlider = $this->_modelo->selectPersonalizado($queryConfi);
         $itemSlider = $this->_modelo->selectPersonalizado($queryItems);
+        
         if($itemSlider){
             echo "<span class ='border-blanco-info'>“El ciclismo es mi vida parce,
 siempre pedaleo hacia la meta
